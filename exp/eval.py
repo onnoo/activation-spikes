@@ -122,7 +122,7 @@ def main(pretrained,
         
         if except_layer:
             except_layer_fname = f'final_except_layer_{pretrained.split("/")[-1]}'
-            except_layer_path = output_dir.joinpath(f'../../../hayunkim/final_except_layer/{except_layer_fname}')
+            except_layer_path = output_dir.joinpath(f'../except_layer/{except_layer_fname}')
 
             data = json.load(except_layer_path.open())
             except_layer = [ 'model.' + name for name, _ in data ]

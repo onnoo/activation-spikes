@@ -94,7 +94,7 @@ def main(pretrained,
     bench_calib_dataset_path = output_dir.joinpath('bench_calib_dataset.pt')
     past_key_values_path = output_dir.joinpath('past_key_values.pt')
     except_layer_fname = f'final_except_layer_{pretrained.split("/")[-1]}'
-    except_layer_path = output_dir.joinpath(f'../../../hayunkim/final_except_layer/{except_layer_fname}')
+    except_layer_path = output_dir.joinpath(f'../except_layer/{except_layer_fname}')
 
     tokenizer = AutoTokenizer.from_pretrained(pretrained)
 
