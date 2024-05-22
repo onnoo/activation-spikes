@@ -65,8 +65,7 @@ def generate_prefix(tokenizer, model, calib_dataset, act_dict, router_logits=Non
         token_id, value = sorted_scales[i]
         # indices = torch.where(calib_dataset == token_id)
         token_ids, freq = torch.unique(calib_dataset[:, 1:], return_counts=True) # pop BOS token
-        ctx_token_ids = token_ids[freq.topk(200)[1]]  # 계산 범위 좁히기 + 발견 확률? 혹은 전체 데이터셋에서 top 매겨도 됨
-        # 자주 등장: 컨텍스트에 덜 영향을 미친다? (stop words?)
+        ctx_token_ids = token_ids[freq.topk(200)[1]]
         
         input_ids = ctx_token_ids.unsqueeze(1).repeat(1, 5)
         input_ids[:, 0] = prefix_id

@@ -141,7 +141,7 @@ def get_migrate_scales(model,
     if model.config.tie_word_embeddings:
         model.tie_weights()
     
-    batch_size, seqlen = input_ids.size()  # batch 하나
+    batch_size, seqlen = input_ids.size()
     conf_use_cache = model.config.use_cache
     model.config.use_cache = use_cache
     
@@ -236,18 +236,3 @@ def get_migrate_scales(model,
 
     return scale_list
 
-
-# def fuse_migration(model, migration_scale_dict):
-#     # disable_down_proj = False
-#     cnt = 0
-#     layernorm_classes = tuple(ALL_LAYERNORM_LAYERS)
-
-#     for name, scale in migration_scale_dict.items():
-#         module = model.get_submodule(name)
-#         if isinstance(module, layernorm_classes):
-#             module.weight.data /= scale
-#         else:
-#             # NOTE: weight에 대해 scale factor가 계산되어 있어야 함
-#             # module.weight_scale.shape = (out_channel, 1)
-#             module.weight_scale.data = (module.weight_scale.data / scale).reshape(-1, 1)
-#             # why reshape?

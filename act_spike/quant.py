@@ -73,7 +73,6 @@ class QLinear(nn.Module):
             return output
 
         #### input_act quant (if necessary)
-        # input_act = input_act.squeeze(dim=0) # batch 1일 때
         if self.input_act_scale is None:
             if self.act_granul == 'per-tensor':
                 self.input_act_scale = input_act.abs().amax() / self.qmax
@@ -83,7 +82,7 @@ class QLinear(nn.Module):
                 input_act = input_act.div(self.input_act_scale).round().type(torch.int8)
             else:
                 raise f'Unknown quantization scheme for activation: {self.act_granul}'
-        elif self.act_granul == 'static' and input_act.dtype != torch.int8:  # 2번 할 수도 있다
+        elif self.act_granul == 'static' and input_act.dtype != torch.int8:
             input_act = input_act.div(self.input_act_scale).round().type(torch.int8)
 
         #### int matmul
@@ -400,7 +399,7 @@ def load_quantized_model(pretrained,
                            except_layer=except_layer,
                            input_scale_dict=input_scale_dict,
                            quantize_bmm=quantize_bmm,
-                           dtype=dtype)  # 먼저 QLinear로 바꾼 후 weight 불러오기 (이러면 gpu가 줄어듬)
+                           dtype=dtype)
     
     if use_safetensors:
         cached_tensor = CachedTensor(pretrained)
@@ -413,7 +412,6 @@ def load_quantized_model(pretrained,
     for key, param_names in sub_info.items():
         # key: 'model.layers.0'
 
-        # none인 경우에만 dtype 따라서 weight 가져오기
         if key == 'none':
             sub_dict = cached_tensor.infer_state_dict(param_names, device=device, dtype=dtype)
         else:

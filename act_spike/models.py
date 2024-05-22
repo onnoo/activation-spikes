@@ -57,7 +57,7 @@ def get_rolling_token_windows(token_list, prefix_token, max_seq_len, context_len
         )
         predicted += window_pred_len
 
-    assert predicted == len(token_list)  # 사실, predicted에서 토큰 하나는 없다
+    assert predicted == len(token_list)
 
 
 class CacheHFLM(HFLM):

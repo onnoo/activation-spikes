@@ -1,5 +1,3 @@
-# https://github.com/mit-han-lab/smoothquant/blob/main/smoothquant/smooth.py
-
 from functools import partial
 from collections import defaultdict
 

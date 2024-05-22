@@ -24,11 +24,6 @@ def inference_per_layers_disk(model,
                               use_safetensors=True,
                               stop_layer=-1,
                               use_cache=False):
-    """
-    레이어 하나씩 GPU에 올리면서 포워드
-    참고: https://github.com/SqueezeAILab/SqueezeLLM/blob/main/llama.py#L29
-    model: loaded in cpu
-    """
 
     # config = AutoConfig.from_pretrained(pretrained)
     # with init_empty_weights():
@@ -43,7 +38,6 @@ def inference_per_layers_disk(model,
     sub_info = split_state_dict(model)
     sub_info = { k.split('.')[-1]: v for k, v in sub_info.items() }
 
-    # outer module은 cuda에
     sub_dict = cached_tensor.infer_state_dict(sub_info['none'], device='cpu', dtype=model.dtype)
     model.load_state_dict(sub_dict, strict=False, assign=True)
     if model.config.tie_word_embeddings:
