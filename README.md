@@ -44,3 +44,18 @@ python eval.py {hf_model_name} {--flags}
 - `--act_granul` : activation quantization scheme
 - `--bmm` : enable BMM quantization
 - `--fp16` : enable FP16
+
+### 3) Benchmark Computational Cost
+
+```
+cd exp
+python bench.py {hf_model_name} {--flags}
+```
+
+**Spported Flags)**
+- `--use_cache` : enable QFeP
+- `--except_layer` : enable QFeM
+- `--seqlen` : set sequence length
+- `--n_samples` : set number of samples
+- `--act_granul` : activation quantization scheme
+- `--fp16` : enable FP16
