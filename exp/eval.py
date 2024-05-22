@@ -137,10 +137,6 @@ def main(pretrained,
         if use_cache:
             prefix_path = output_dir.joinpath(f'past_key_values.pt')
             past_key_values = load_past_key_values(model, prefix_path)
-            
-            # past_key_values를 저장하자
-            # 중요 - 기준 무엇으로?
-            # BOS토큰이 탑일 때에는?
         
         outputs = evaluate(model,
                            tokenizer,
