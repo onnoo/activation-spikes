@@ -1,4 +1,4 @@
-# Mitigating Quantization Errors Due to Activation Spikes in GLU-Based LLMs
+# Mitigating Quantization Errors Due to Activation Spikes in GLU-Based LLMs [[pdf](https://arxiv.org/abs/2405.14428)]
 
 ## Installation
 
