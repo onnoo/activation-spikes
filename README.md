@@ -1,5 +1,7 @@
 # Mitigating Quantization Errors Due to Activation Spikes in GLU-Based LLMs [[pdf](https://arxiv.org/abs/2405.14428)]
 
+<img src="https://github.com/onnoo/activation-spikes/blob/add_fig/figs/activation_spikes.png" />
+
 ## Installation
 
 **Requirements)**
